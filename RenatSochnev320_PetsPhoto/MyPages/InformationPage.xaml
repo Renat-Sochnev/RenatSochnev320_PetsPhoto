@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="InformationPage" Background="Beige"
-      FontSize="18">
+      FontSize="15">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,11 +28,12 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <ListView x:Name="PetsList"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="4"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="6"
                   Grid.Row="0"
                   Grid.RowSpan="6">
             <ListView.View>
@@ -41,7 +42,8 @@
                         <GridViewColumn Header="Фото">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding Photo}"/>
+                                    <Image Source="{Binding Photo}"
+                                           Width="200"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -56,5 +58,14 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+
+
+        <Button x:Name="GoAddPageBtn"
+                Content="Перейти на страницу добавления"
+                Grid.Column="2"
+                Grid.ColumnSpan="2"
+                Grid.Row="8" Click="GoAddPageBtn_Click"/>
+
     </Grid>
 </Page>

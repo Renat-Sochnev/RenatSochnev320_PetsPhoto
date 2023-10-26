@@ -24,3 +24,5 @@ E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto
 E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto\obj\Debug\RenatSochnev320_PetsPhoto.csproj.CopyComplete
 E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto\obj\Debug\RenatSochnev320_PetsPhoto.exe
 E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto\obj\Debug\RenatSochnev320_PetsPhoto.pdb
+E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto\obj\Debug\MyPages\AddPhotoPage.g.cs
+E:\Разработка ПМ\RenatSochnev320_PetsPhoto\RenatSochnev320_PetsPhoto\obj\Debug\MyPages\AddPhotoPage.baml

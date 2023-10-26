@@ -22,10 +22,18 @@ namespace RenatSochnev320_PetsPhoto.MyPages
     public partial class InformationPage : Page
     {
         public static List<PetsInfo> petsInfos {  get; set; }
-        public InformationPage(User currentUser)
+        public static User currentUser = new User();
+        public InformationPage(User user)
         {
             InitializeComponent();
+            currentUser = user;
             petsInfos = new List<PetsInfo>(DB.Connection.PetsPhotoEntities.PetsInfo.ToList().Where(x => x.Id_Pet == currentUser.Id_Pet));
+            PetsList.ItemsSource = petsInfos;
+        }
+
+        private void GoAddPageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MyPages.AddPhotoPage(currentUser));
         }
     }
 }
