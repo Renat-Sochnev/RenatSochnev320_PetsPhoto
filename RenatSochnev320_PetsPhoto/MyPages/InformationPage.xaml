@@ -47,7 +47,8 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn  Header="Описание">
+                        <GridViewColumn  Header="Описание"
+                                         Width="700">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"/>
@@ -72,15 +73,40 @@
                  Grid.ColumnSpan="3"
                  Width="330"
                  HorizontalAlignment="Right" TextChanged="SearchTb_TextChanged"/>
-
-        <Button x:Name="GoAddPageBtn"
-                Content="Перейти на страницу добавления"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
+        
+        <Button x:Name="ExitBtn"
+                Content="Выйти"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
                 Grid.Row="8"
                 Grid.RowSpan="2"
                 Height="45"
+                Width="140" Click="ExitBtn_Click"/>
+        
+        <Button x:Name="GoAddPageBtn"
+                Content="Перейти на страницу добавления"
+                Grid.Column="3"
+                Grid.ColumnSpan="3"
+                Grid.Row="8"
+                Grid.RowSpan="2"
+                Height="45"
+                Width="330"
                 Click="GoAddPageBtn_Click"/>
+        
+        
+        <TextBlock Text="Питомец "
+                   Grid.Column="3"
+                   Grid.Row="7"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"/>
+
+        <ComboBox Name="FilterCb"
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="7"
+                  Width="250" SelectionChanged="FilterCb_SelectionChanged"/>
+
 
     </Grid>
 </Page>

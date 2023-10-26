@@ -24,12 +24,19 @@ namespace RenatSochnev320_PetsPhoto.MyPages
     {
         public static List<PetsInfo> petsInfos {  get; set; }
         public static User currentUser = new User();
+        public static List<Pet> pets { get; set; }
         public InformationPage(User user)
         {
             InitializeComponent();
             currentUser = user;
             petsInfos = new List<PetsInfo>(DB.Connection.PetsPhotoEntities.PetsInfo.ToList().Where(x => x.Id_Pet == currentUser.Id_Pet));
             PetsList.ItemsSource = petsInfos;
+
+            pets = new List<Pet>(DB.Connection.PetsPhotoEntities.Pet.ToList());
+            pets.Insert(0, new Pet() { Id = 0, Name = "Все питомцы" });
+            FilterCb.ItemsSource = pets;
+            FilterCb.DisplayMemberPath = "Name";
+
         }
 
         private void GoAddPageBtn_Click(object sender, RoutedEventArgs e)
@@ -50,7 +57,24 @@ namespace RenatSochnev320_PetsPhoto.MyPages
                 filterInfo = filterInfo.Where(x => x.Name.ToLower().StartsWith(SearchTb.Text.ToLower()));
             }
 
+            if(FilterCb.SelectedIndex > 0)
+            {
+                Pet selectPet = FilterCb.SelectedItem as Pet;
+                filterInfo = filterInfo.Where(x => x.Id_Pet == selectPet.Id);
+            }
+
+
             PetsList.ItemsSource = filterInfo;
+        }
+
+        private void FilterCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }
