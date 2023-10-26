@@ -60,12 +60,27 @@
         </ListView>
 
 
+        <TextBlock Text="Поиск  "
+                   Grid.Column="0"
+                   Grid.Row="7"
+                   FontSize="20"
+                   VerticalAlignment="Center"/>
+
+        <TextBox x:Name="SearchTb"
+                 Grid.Column="0"
+                 Grid.Row="7"
+                 Grid.ColumnSpan="3"
+                 Width="330"
+                 HorizontalAlignment="Right" TextChanged="SearchTb_TextChanged"/>
 
         <Button x:Name="GoAddPageBtn"
                 Content="Перейти на страницу добавления"
                 Grid.Column="2"
                 Grid.ColumnSpan="2"
-                Grid.Row="8" Click="GoAddPageBtn_Click"/>
+                Grid.Row="8"
+                Grid.RowSpan="2"
+                Height="45"
+                Click="GoAddPageBtn_Click"/>
 
     </Grid>
 </Page>

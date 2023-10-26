@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RenatSochnev320_PetsPhoto.MyPages
 {
@@ -34,6 +35,22 @@ namespace RenatSochnev320_PetsPhoto.MyPages
         private void GoAddPageBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MyPages.AddPhotoPage(currentUser));
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            IEnumerable<PetsInfo> filterInfo = petsInfos;
+            if (SearchTb.Text != "")
+            {
+                filterInfo = filterInfo.Where(x => x.Name.ToLower().StartsWith(SearchTb.Text.ToLower()));
+            }
+
+            PetsList.ItemsSource = filterInfo;
         }
     }
 }
