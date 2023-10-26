@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetsPhotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PetsInfo" Relationship="Self.FK_PetsInfo_Pet" FromRole="Pet" ToRole="PetsInfo" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Pet" FromRole="Pet" ToRole="User" />
+  </EntityType>
+  <EntityType Name="PetsInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Pet" Type="Int32" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_PetsInfo_Pet" FromRole="PetsInfo" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id_Pet" Type="Int32" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_User_Pet" FromRole="User" ToRole="Pet" />
+  </EntityType>
+  <Association Name="FK_PetsInfo_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+    <End Role="PetsInfo" Type="Self.PetsInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PetsInfo">
+        <PropertyRef Name="Id_Pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id_Pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PetsPhotoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pet" EntityType="Self.Pet" />
+    <EntitySet Name="PetsInfo" EntityType="Self.PetsInfo" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_PetsInfo_Pet" Association="Self.FK_PetsInfo_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="PetsInfo" EntitySet="PetsInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Pet" Association="Self.FK_User_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

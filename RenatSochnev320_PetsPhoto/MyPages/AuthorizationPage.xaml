@@ -60,7 +60,8 @@
                 Grid.Column="1"
                 Grid.Row="6"
                 Height="45"
-                VerticalAlignment="Bottom"/>
+                VerticalAlignment="Bottom" 
+                Click="LoginBtn_Click"/>
 
     </Grid>
 </Page>

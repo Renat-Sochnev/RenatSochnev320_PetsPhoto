@@ -23,6 +23,7 @@ namespace RenatSochnev320_PetsPhoto
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.NavigationService.Navigate(new MyPages.AuthorizationPage());
         }
     }
 }
